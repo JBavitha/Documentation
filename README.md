@@ -4,3 +4,7 @@ The **ocx_dlx_xlx_if** module acts as a bridge between the OpenCAPI Data Link Ex
 
 The schematic diagram provides a detailed view of the OCX_DLX_XLX_IF module's architecture.  
 [View the Schematic Diagram PDF](./schematic_xlx_if.pdf)
+
+### Signal Descriptions
+
+The detailed documentation of all signals in the `ocx_dlx_xlx_if` module is available here: [Signal Descriptions](./Signals_Descriptions.pdf)
