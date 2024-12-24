@@ -7,4 +7,4 @@ The schematic diagram provides a detailed view of the OCX_DLX_XLX_IF module's ar
 
 ### Signal Descriptions
 
-The detailed documentation of all signals in the `ocx_dlx_xlx_if` module is available here: [Signal Descriptions](./Signals_Descriptions.pdf)
+The detailed documentation of all signals in the `ocx_dlx_xlx_if` module is available here: [Signal Descriptions](./Signal_Descriptions.pdf)
