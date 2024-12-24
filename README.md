@@ -11,6 +11,10 @@ The detailed documentation of all signals in the `ocx_dlx_xlx_if` module is avai
 
 ### Logic of Each Test Case
 
+<details>
+
+<summary>Verification of Output Signals (ln0_rx_valid_out to ln7_rx_valid_out)</summary>
+
 ## Overview
 
 This section describes the behavior of the outputs `ln0_rx_valid_out`, `ln1_rx_valid_out`, ..., `ln7_rx_valid_out` in relation to the **select line**. The output is driven based on the select line, which is controlled by the AND operation of two input signals (`gtwiz_reset_rx_done_in` and `gtwiz_buffbypass_rx_done_in`)
@@ -40,6 +44,6 @@ The **select line** for each output is determined by the logical AND of two inpu
 ***case2: select line = 0***
 ![image](https://github.com/user-attachments/assets/05986343-6377-4ed6-9c12-215b17c13112)
 
-
+</details>
 
 
