@@ -70,5 +70,50 @@ The **select line** for each output is determined by the logical AND of two inpu
 </details>
 
 
+<details>
+
+<summary>Verification of io_pb_o0_rx_init_done</summary>
+
+Each bit in the vector represents the initialization status of a lane (io_pb_o0_rx_init_done[n] for lane n). The signal is updated based on a lane’s training and synchronization status, driven by the FSM logic for RX training.
+
+- xtsm_q: State variable controlling the transceiver's receiver initialization process.
+  - The output becomes high when the state machine enters the pulse_done state, provided the following conditions are met:
+    - gtwiz_reset_rx_done_in: Receiver reset is complete.
+    - gtwiz_buffbypass_rx_done_in: Buffer bypass is complete.
+    - gtwiz_userclk_rx_active_in: Receiver user clock is active.
+
+- If the state machine is not in pulse_done, the signal remains 8'b0.
+
+</details>
+
+
+
+
+<details>
+
+<summary>Verification of gtwiz_reset_rx_datapath_out</summary>
+
+### The FSM operates in three states:
+- find_sync (State 0):
+  - The FSM waits for all lanes to detect the sync pattern.
+  - Transition to hold_pulse occurs when all lanes (pb_io_o0_rx_run_lane) are active.
+
+- hold_pulse (State 1):
+  - The FSM asserts gtwiz_reset_rx_datapath_out (set to 1'b1) to reset the receiver datapath.
+  - A counter (pulse_count_q) ensures the reset signal remains asserted for 7 clock cycles of opt_gckn (the 156.25 MHz clock).
+  - Transition to pulse_done occurs after the counter reaches the maximum value.
+
+- pulse_done (State 2):
+  - The FSM deasserts gtwiz_reset_rx_datapath_out (set to 1'b0), completing the reset process.
+  - The FSM transitions back to find_sync if the transceiver reset conditions (~gtwiz_reset_tx_done_in and ~gtwiz_buffbypass_tx_done_in) are met.
+ 
+![image](https://github.com/user-attachments/assets/be139978-d467-4120-8a8f-4e15ca9b95d5)
+
+
+</details>
+
+
+
+
 
 
