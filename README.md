@@ -84,6 +84,9 @@ Each bit in the vector represents the initialization status of a lane (io_pb_o0_
 
 - If the state machine is not in pulse_done, the signal remains 8'b0.
 
+![image](https://github.com/user-attachments/assets/02a9a4c5-6b7b-45d2-9e98-690542b84585)
+
+
 </details>
 
 
