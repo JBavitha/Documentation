@@ -47,3 +47,28 @@ The **select line** for each output is determined by the logical AND of two inpu
 </details>
 
 
+
+<details>
+
+<summary>Verification of dlx_reset</summary>
+
+### When send_first = 1'b1:
+- The DLx immediately starts transmitting pattern 'A' as soon as the Xilinx transmitter is initialized.
+- This is determined by checking ~(gtwiz_reset_tx_done_in & gtwiz_buffbypass_tx_done_in).
+- If both signals are asserted (1), it indicates the transmitter is fully initialized and ready to transmit.
+
+### When send_first = 1'b0:
+
+- The DLx waits until the Xilinx receiver is initialized before transmitting pattern 'A'.
+- The logic checks the state of rec_first_xtsm_q.
+  - If rec_first_xtsm_q = 0, the DLx asserts dlx_reset low only when gtwiz_reset_rx_done_in & gtwiz_buffbypass_rx_done_in are both asserted.
+  - This indicates the receiver has completed initialization.
+- If rec_first_xtsm_q = 1, it monitors the transmitter signals to reset again if necessary.
+
+![image](https://github.com/user-attachments/assets/b1e5e889-edcb-4685-bd33-eb9e4dec1f3a)
+
+</details>
+
+
+
+
